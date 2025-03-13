@@ -94,7 +94,10 @@ export default function Home() {
             return "Industrial";
         } else if (co > 1.0) {
             return "Vehicular";
-        } else {
+        }else if (nh3>10 || co > 1.0) {
+            return "Household Chemicals";
+        } 
+        else {
             return "Mixed Source";
         }
     };
