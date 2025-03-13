@@ -85,19 +85,18 @@ export default function Home() {
 
     const getPollutionSource = (components) => {
         if (!components) return "Unknown";
+        
+        const { pm2_5, pm10, no2, so2, co, nh3 } = components;
 
-        const { pm2_5, pm10, no2, so2, co } = components; // Add benzene and toluene if available
-
-        if (pm2_5 > 80 || pm10 > 100) {
+        if (pm2_5 > 50 || pm10 > 80) {
             return "Dust/Airborne Particles";
         } else if (no2 > 50 || so2 > 40) {
             return "Industrial";
-        } else if (co > 1.0) {
-            return "Vehicular";
-        }else if (nh3>10 || co > 1.0) {
-            return "Household Chemicals";
-        } 
-        else {
+        } else if (co > 1.0 && no2 > 30) {
+            return "Vehicular";  // CO + NO₂ combination improves accuracy
+        } else if (nh3 > 10 || so2 > 20) {
+            return "Household Chemicals";  // Added SO₂ for better classification
+        } else {
             return "Mixed Source";
         }
     };
@@ -261,19 +260,19 @@ export default function Home() {
                         </div>
                     </div>
 
-                    
+
                     {aqiData && (
                         <div className="backdrop-blur-md bg-blue-900/10 border border-blue-500/20 rounded-xl p-6 mt-6">
-                        <h2 className="text-lg font-medium text-gray-300 mb-4 flex items-center">
-                            <Droplets className="h-5 w-5 mr-2 text-cyan-400" />
-                            Primary Pollution Source
-                        </h2>
-                        <p className="text-lg">
-                            <span className="font-semibold text-cyan-400">{getPollutionSource(aqiData.components)}</span>
-                        </p>
+                            <h2 className="text-lg font-medium text-gray-300 mb-4 flex items-center">
+                                <Droplets className="h-5 w-5 mr-2 text-cyan-400" />
+                                Primary Pollution Source
+                            </h2>
+                            <p className="text-lg">
+                                <span className="font-semibold text-cyan-400">{getPollutionSource(aqiData.components)}</span>
+                            </p>
                         </div>
-                     )}
-                    
+                    )}
+
 
 
 
