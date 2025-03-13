@@ -9,7 +9,7 @@ The **Real-Time AQI Monitoring System** provides live air quality index (AQI) da
 - Provides **real-time recommendations** based on pollutant levels.
 - Identifies pollution sources such as **Vehicular, Industrial, Household Chemicals, and Dust/Airborne Particles**.
 
-  ## Future Enhancements
+## Future Enhancements
 - Add **historical AQI data visualization**.
 - Provide **personalized health recommendations**.
 
